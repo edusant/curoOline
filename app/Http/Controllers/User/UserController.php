@@ -3,9 +3,7 @@ namespace App\Http\Controllers\User;
 
 use App\Cqrs\User\CreateUser;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -26,8 +24,8 @@ class UserController extends Controller
         }
 
         CreateUser::create($request->all());
-
         return response()->json(["Cadastro"=> true], 201);
+
     }
 
 }
