@@ -23,7 +23,7 @@ class UserTest extends TestCase
 
         $this->assertTrue(isset($ret->id));
 
-        $resLogin =  (new CriarToken())->criaToken($data);
+        $resLogin = (new CriarToken())->criaToken($data);
 
         $this->assertTrue(isset($resLogin->original['token']));
 
