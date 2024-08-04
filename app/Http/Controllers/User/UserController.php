@@ -28,7 +28,7 @@ class UserController extends Controller
             return response()->json($validator->errors(), 401);
         }
 
-        CreateUser::create($request->all());
+        (new CreateUser())->create($request->all());
         return response()->json(["Cadastro"=> true], 201);
 
     }

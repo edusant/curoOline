@@ -19,7 +19,7 @@ class UserTest extends TestCase
             'password' => fake()->password(),
         ];
 
-        $ret = CreateUser::create($data);
+        $ret = (new CreateUser())->create($data);
 
         $this->assertTrue(isset($ret->id));
 

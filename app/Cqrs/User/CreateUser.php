@@ -8,7 +8,7 @@ use function Laravel\Prompts\error;
 
 class CreateUser
 {
-    public static function create($data)
+    public function create($data)
     {
         return User::create([
             'name' => $data['name'],
