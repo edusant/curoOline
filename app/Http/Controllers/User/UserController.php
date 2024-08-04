@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Cqrs\User\CreateUser;
 use App\Http\Controllers\Controller;
 use App\Rules\Request\RateLimit;
+use App\Services\User\CriarToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,10 +47,11 @@ class UserController extends Controller
             return response()->json($validator->errors(), 401);
         }
 
-        return "Tudo certo";
+        $credentials['email'] = strtolower($request->email);
+        $credentials['password'] = $request->password;
 
-       // CreateUser::create($request->all());
-        //return response()->json(["Cadastro"=> true], 201);
+        return (new CriarToken())->criaToken($credentials);
+
     }
 
 }

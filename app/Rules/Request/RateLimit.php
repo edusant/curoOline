@@ -18,9 +18,9 @@ class RateLimit implements ValidationRule
         //
         $executed = RateLimiter::attempt(
             'login:' . $value,
-            $perMinute = 5,
-            function() {
-               return 200;
+            5,
+            function () {
+               return null;
             }
          );
 
