@@ -10,3 +10,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/criar/conta', [UserController::class,'criarConta']);
+Route::post('/login', [UserController::class,'login']);
+
