@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
+
             $table->id();
+            $table->string('titulo', 255);
+            $table->text('descriçao');
+            $table->date('data_encerramento');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+
         });
     }
 

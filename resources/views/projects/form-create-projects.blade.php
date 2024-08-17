@@ -36,11 +36,11 @@
 
 
                 <textarea id="message" rows="4"
-                class="mt-1 block w-3/4" placeholder="Descrição do projeto"
+                class="mt-1 block w-3/4" placeholder="Descrição do projeto" name="descricao"
                 ></textarea>
 
-                <label for="">   {{ __('Data encerramento') }}</label>
-                <input type="date" name="date_encerramento" id="date_encerramento">
+                <label for="">   {{ __('Data encerramento do projeto') }}</label>
+                <input type="date" name="data_encerramento" id="date_encerramento">
 
 
             </div>
