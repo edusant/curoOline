@@ -3,6 +3,7 @@
 use App\Cqrs\GetProjects;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,7 +21,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('project')->group(function ()
     {
-        Route::post('create/', [ProjectsController::class, 'create'])->name('create_project');
+        Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
+        Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
 
     });
