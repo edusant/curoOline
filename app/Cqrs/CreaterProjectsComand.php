@@ -11,7 +11,7 @@ class CreaterProjectsComand
     public function create(string $titulo, string $descricao, int $userId, string $dataEncerramento): void
     {
         DB::transaction(function () use ($descricao, $titulo, $dataEncerramento, $userId) {
-            Projects::created([
+            Projects::create([
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'data_encerramento' => $dataEncerramento,

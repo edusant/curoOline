@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->id();
             $table->string('titulo', 255);
-            $table->text('descriçao');
+            $table->text('descricao');
             $table->date('data_encerramento');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

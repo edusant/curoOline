@@ -1,5 +1,6 @@
 <?php
 
+use App\Cqrs\GetProjects;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', ['projetos' => (new GetProjects)->get()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('project')->group(function ()
     {
         Route::post('create/', [ProjectsController::class, 'create'])->name('create_project');
+        Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
+
     });
 });
 
