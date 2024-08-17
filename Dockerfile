@@ -32,10 +32,10 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # COPY . /var/www/html
 
 # Comando opcional para instalar dependências PHP usando o Composer
-# RUN composer install --no-dev
+ RUN composer install --no-dev
 
 # Comando opcional para ajustar permissões, se necessário
-# RUN chown -R www-data:www-data /var/www/html
+ RUN chown -R www-data:www-data /var/www/html
 
 # Comando opcional para expor a porta, se necessário
 # EXPOSE 9000
