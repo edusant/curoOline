@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
+RUN composer install
+
 # Limpeza do cache de pacotes
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
