@@ -2,12 +2,27 @@
 
 
     <x-primary-button x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'add-user')">{{ __('Adicionar usuário') }}</x-primary-button>
+        x-on:click.prevent="$dispatch('open-modal', 'add-user')">{{ __('ver/adicionar usuários') }}</x-primary-button>
 
     <x-modal name="add-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('add.user') }}" class="p-6">
             @csrf
             @method('post')
+
+            @foreach ($usersProject as $user)
+            @if($user->first())
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h6 class="text-gray-900">
+                    {{ __('Usuários cadastrados') }}
+                </h6>
+            </div>
+            @endif
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900">
+                        {{ $user->name }}
+                    </div>
+                </div>
+            @endforeach
 
             <div class="mt-6">
 
@@ -27,7 +42,7 @@
                 </x-secondary-button>
 
                 <x-primary-button class="ms-3">
-                    {{ __('Adicionar Usuário') }}
+                    {{ __('Adicionar novo usuário') }}
                 </x-primary-button>
             </div>
         </form>

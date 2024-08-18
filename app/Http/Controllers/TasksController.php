@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cqrs\CreateTask;
 use App\Cqrs\GetTaskPorID;
+use App\Cqrs\GetUsuariosProjetos;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -34,9 +35,11 @@ class TasksController extends Controller
     }
 
     public function get(Request $request) {
-
+        $task =  (new GetTaskPorID)->get($request->task_id);
         return view('task.page', [
-            'task' => (new GetTaskPorID)->get($request->task_id)
+
+            'task' => $task,
+            'usersProject' => (new GetUsuariosProjetos)->get($task->project->id)
         ]);
 
     }
