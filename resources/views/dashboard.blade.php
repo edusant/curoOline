@@ -14,16 +14,19 @@
                 @include('projects.form-create-projects')
             </div>
             @foreach ($projetos as $projeto)
-            <a href="{{route('page.project', ['project_id' => $projeto->id])}}" class="p-6">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">
-                        {{ $projeto->titulo }}
+                <a href="{{ route('page.project', ['project_id' => $projeto->id]) }}" class="p-6">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 text-gray-900">
+                            {{ $projeto->titulo }}
+                        </div>
                     </div>
-                    </a>
-                </div>
+                </a>
+                <br>
             @endforeach
-
-            {{ $projetos->links() }}
         </div>
+
+        {{ $projetos->links() }}
+
+    </div>
     </div>
 </x-app-layout>

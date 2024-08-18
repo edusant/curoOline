@@ -25,6 +25,7 @@ class TasksController extends Controller
             descricao: $request->descricao,
             dataEncerramento: $request->data_encerramento, userId: auth()->user()->id,
             status:$request->status, projectId: $request->project_id);
+
             return redirect()->route('page.task', ['task_id' => $id])->with('status', 'task cadastrada');
 
         } catch (\Throwable $th) {

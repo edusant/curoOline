@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cqrs\CreaterProjectsComand;
 use App\Cqrs\GetProjectPorID;
+use App\Cqrs\GetTasks;
 use Illuminate\Http\Request;
 
 use function Laravel\Prompts\error;
@@ -34,7 +35,8 @@ class ProjectsController extends Controller
     public function list(Request $request)
     {
         return view('projects.page', [
-            'projeto' => (new GetProjectPorID)->get($request->project_id)
+            'projeto' => (new GetProjectPorID)->get($request->project_id),
+            'tasks' => (new GetTasks)->get($request->project_id)
         ]);
 
     }
