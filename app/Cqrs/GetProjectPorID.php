@@ -7,6 +7,6 @@ class GetProjectPorID
 {
     public function get(int $projectId): object
     {
-        return Projects::select('titulo', 'id')->where('id', $projectId)->first();
+        return Projects::where('id', $projectId)->first();
     }
 }

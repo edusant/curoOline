@@ -22,8 +22,14 @@ Route::middleware('auth')->group(function () {
     Route::prefix('project')->group(function ()
     {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
-        Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
+
+    });
+
+    Route::prefix('task')->group(function ()
+    {
+        Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
+        Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
 
     });
 });

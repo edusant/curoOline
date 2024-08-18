@@ -9,10 +9,11 @@ class CreateTask
 {
 
     public function create(string $titulo, string $descricao, int $userId, string $dataEncerramento,
-    int $projectId, string $status): void
+    int $projectId, string $status): int|null
     {
-        DB::transaction(function () use ($descricao, $titulo, $dataEncerramento, $userId, $status, $projectId) {
-            Tasks::create([
+        $id = null;
+        DB::transaction(function () use (&$id, $descricao, $titulo, $dataEncerramento, $userId, $status, $projectId) {
+           $id = Tasks::create([
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'data_encerramento' => $dataEncerramento,
@@ -21,5 +22,6 @@ class CreateTask
                 'project_id' => $projectId
             ])->id;
         });
+        return $id;
     }
 }

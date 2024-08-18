@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cqrs\CreateTask;
+use App\Cqrs\GetTaskPorID;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -20,14 +21,23 @@ class TasksController extends Controller
                 'project_id' => 'required'
             ]);
 
-            (new CreateTask)->create(titulo: $request->titulo,
+           $id = (new CreateTask)->create(titulo: $request->titulo,
             descricao: $request->descricao,
             dataEncerramento: $request->data_encerramento, userId: auth()->user()->id,
             status:$request->status, projectId: $request->project_id);
-            return back()->with('status', 'task cadastrada');
+            return redirect()->route('page.task', ['task_id' => $id])->with('status', 'task cadastrada');
 
         } catch (\Throwable $th) {
            dd($th);
         }
     }
+
+    public function get(Request $request) {
+
+        return view('task.page', [
+            'task' => (new GetTaskPorID)->get($request->task_id)
+        ]);
+
+    }
+
 }
