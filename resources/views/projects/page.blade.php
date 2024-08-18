@@ -15,6 +15,8 @@
                 @include('projects.form-create-task')
                 @include('projects.form-add-user')
                 @include('projects.form-update-projects')
+                @include('projects.form-delete-projects')
+
             </div>
 
             @foreach ($tasks as $task)

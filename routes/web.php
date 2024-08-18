@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
         Route::put('update', [ProjectsController::class, 'update'])->name('update.project');
 
+        Route::delete('delete', [ProjectsController::class, 'destroy'])->name('delete.project');
+
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
         Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user');
     });

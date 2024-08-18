@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cqrs\AdicionaUsuarioEmProjeto;
 use App\Cqrs\CreaterProjectsComand;
+use App\Cqrs\DeleteProjectsComand;
 use App\Cqrs\GetIdUserPorEmail;
 use App\Cqrs\GetProjectPorID;
 use App\Cqrs\GetTasks;
@@ -30,7 +31,9 @@ class ProjectsController extends Controller
                 dataEncerramento: $request->data_encerramento,
                 userId: auth()->user()->id
             );
+
             return back()->with('status', 'Projeto cadastrado');
+
         } catch (\Throwable $th) {
             info($th);
         }
@@ -81,5 +84,24 @@ class ProjectsController extends Controller
         (new AdicionaUsuarioEmProjeto)->create($userId, $request->project_id);
 
         return back()->with('status', 'Usuário adicionado com sucesso!');
+    }
+
+    public function destroy(Request $request)
+    {
+        try {
+            $request->validate([
+                'id' => 'required',
+            ]);
+
+            (new DeleteProjectsComand)->create(
+                id: $request->id
+            );
+
+            return back()->with('status', 'Projeto atualizado');
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+
     }
 }

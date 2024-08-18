@@ -16,8 +16,6 @@
                 {{ __('Atualizando projeto') }}
             </h2>
 
-
-
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Titulo') }}" class="sr-only" />
 
@@ -31,8 +29,6 @@
                 />
                 <x-input-error :messages="$errors->userDeletion->get('titulo')" class="mt-2" />
 
-
-
                 <textarea id="message" rows="4"
                 class="mt-1 block w-3/4" placeholder="Descrição do projeto" name="descricao"
                 >{{ $projeto->descricao }}</textarea>
@@ -41,7 +37,6 @@
                 <input type="date"value="{{ $projeto->data_encerramento }}"
                 name="data_encerramento" id="date_encerramento">
                 <input type="hidden" name="id" value="{{ $projeto->id }}">
-
 
             </div>
 
