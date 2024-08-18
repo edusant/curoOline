@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('user_tasks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->unsignedInteger('user_id')
+          ;
+            $table->foreign('user_id')->references('id')->on('users')  ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->unsignedInteger('task_id') ;
+            $table->foreign('task_id')->references('id')->on('tasks')  ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

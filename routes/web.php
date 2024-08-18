@@ -19,7 +19,6 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('project')->group(function ()
     {
@@ -30,8 +29,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('task')->group(function ()
     {
+
+        Route::delete('/delete/task', [TasksController::class, 'destroy'])->name('delete.task');
+
         Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
-        Route::put('atualizar/task', [TasksController::class, 'update'])->name('update.task');
+        Route::put('update/task', [TasksController::class, 'update'])->name('update.task');
 
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
@@ -39,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
         Route::post('remover/associar', [TasksController::class, 'removerUsuarioTask'])
         ->name('func.task.romover.associar');
+
 
     });
 

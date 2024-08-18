@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cqrs\AssociarUsuarioAtask;
 use App\Cqrs\CreateTask;
+use App\Cqrs\DestroyTask;
 use App\Cqrs\GetTaskPorID;
 use App\Cqrs\GetUsuariosProjetos;
 use App\Cqrs\GetUsuariosProjetosPaginator;
@@ -110,6 +111,25 @@ class TasksController extends Controller
                 id: (int)$request->id,
                 dataEncerramento: $request->data_encerramento,
                 status: $request->status
+            );
+
+            return back()->with('status', 'task cadastrada');
+
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'id' => 'required|numeric'
+            ]);
+
+            (new DestroyTask)->create(
+                id: (int)$request->id,
             );
 
             return back()->with('status', 'task cadastrada');
