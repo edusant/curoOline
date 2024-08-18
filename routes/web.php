@@ -6,6 +6,8 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
+#Todo Exibir usuário associados, editar Task e projeto, deletar task e projeto,deletar associa projeto e task, noticar usuário
+#Todo teste unitários subir, fila docker
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,8 +26,6 @@ Route::middleware('auth')->group(function () {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
         Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user');
-
-
     });
 
     Route::prefix('task')->group(function ()

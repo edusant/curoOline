@@ -56,7 +56,8 @@ class TasksController extends Controller
 
     }
 
-    public function associarUsuarioTask(Request $request) {
+    public function associarUsuarioTask(Request $request)
+    {
 
         $request->validate([
             'task_id' => 'required',

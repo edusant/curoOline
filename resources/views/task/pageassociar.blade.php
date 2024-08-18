@@ -10,20 +10,20 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 Adicionar resposável
             </div>
-            <form action="{{route('func.task.associar')}}" method="post">
+            <form action="{{ route('func.task.associar') }}" method="post">
                 @csrf
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     @foreach ($usersProject as $user)
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
-                                {{ $user->name }} - <button type="submit" name="user_id" value="{{$user->id}}">Associar usuário</button>
+                                {{ $user->name }} - <button type="submit" name="user_id"
+                                    value="{{ $user->id }}">Associar usuário</button>
                             </div>
                         </div>
                     @endforeach
-                    <input type="hidden" name="task_id" value="{{$task->id}}">
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
                 </div>
             </form>
-
         </div>
     </div>
 

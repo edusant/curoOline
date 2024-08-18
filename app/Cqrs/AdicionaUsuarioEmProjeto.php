@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Cqrs;
 
 use App\Models\ProjectUser;
