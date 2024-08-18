@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
+        Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user');
+
 
     });
 
@@ -30,8 +32,10 @@ Route::middleware('auth')->group(function () {
     {
         Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
-
     });
+
+
+
 });
 
 require __DIR__.'/auth.php';

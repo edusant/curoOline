@@ -1,3 +1,4 @@
+{{dd($usersProject)}}
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -12,6 +13,8 @@
                     {{ session('status') }}
                 @endif
                 @include('projects.form-create-task')
+                @include('projects.form-add-user')
+                @include('projects.form-add-user')
             </div>
 
             @foreach ($tasks as $task)

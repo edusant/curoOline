@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Cqrs\AdicionaUsuarioEmProjeto;
 use App\Cqrs\CreaterProjectsComand;
+use App\Cqrs\GetIdUserPorEmail;
 use App\Cqrs\GetProjectPorID;
 use App\Cqrs\GetTasks;
+use App\Cqrs\GetUsuariosProjetos;
 use Illuminate\Http\Request;
 
 use function Laravel\Prompts\error;
@@ -36,8 +39,24 @@ class ProjectsController extends Controller
     {
         return view('projects.page', [
             'projeto' => (new GetProjectPorID)->get($request->project_id),
-            'tasks' => (new GetTasks)->get($request->project_id)
+            'tasks' => (new GetTasks)->get($request->project_id),
+            'usersProject' => (new GetUsuariosProjetos)->get($request->project_id)
         ]);
+
+    }
+
+    public function addUser(Request $request) {
+
+        $request->validate([
+            'email' => 'required',
+            'project_id' => 'required'
+        ]);
+
+        $userId = (new GetIdUserPorEmail)->get($request->email);
+
+        (new AdicionaUsuarioEmProjeto)->create($userId, $request->project_id);
+
+        return back()->with('status', 'Usuário adicionado com sucesso!');
 
     }
 }
