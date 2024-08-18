@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     {
         Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
+        Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
+        Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar');
+
     });
 
 

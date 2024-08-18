@@ -19,6 +19,9 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 Responsáveis:
+                <hr>
+
+                <a href="{{route('page.task.associar', ['task_id'=>  $task->id])}}">Adicionar Responsável</a>
             </div>
 
         </div>

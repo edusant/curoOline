@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cqrs\AssociarUsuarioAtask;
 use App\Cqrs\CreateTask;
 use App\Cqrs\GetTaskPorID;
 use App\Cqrs\GetUsuariosProjetos;
@@ -41,6 +42,30 @@ class TasksController extends Controller
             'task' => $task,
             'usersProject' => (new GetUsuariosProjetos)->get($task->project->id)
         ]);
+
+    }
+
+    public function associar(Request $request) {
+        $task =  (new GetTaskPorID)->get($request->task_id);
+
+        return view('task.pageassociar', [
+            'task' => $task,
+            'usersProject' => (new GetUsuariosProjetos)->get($task->project->id)
+        ]);
+
+
+    }
+
+    public function associarUsuarioTask(Request $request) {
+
+        $request->validate([
+            'task_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId:$request->task_id);
+
+        return back()->with('status', 'usuário associado');
 
     }
 
