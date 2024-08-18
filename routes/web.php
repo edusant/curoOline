@@ -35,9 +35,9 @@ Route::middleware('auth')->group(function () {
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
         Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar');
 
+        Route::post('remover/associar', [TasksController::class, 'removerUsuarioTask'])
+        ->name('func.task.romover.associar');
     });
-
-
 
 });
 

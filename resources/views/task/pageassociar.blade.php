@@ -10,6 +10,23 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 Adicionar resposável
             </div>
+
+            <form action="{{ route('func.task.romover.associar') }}" method="post">
+                @csrf
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    @foreach ($userResponsaveis as $user)
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900">
+                                {{ $user->name }} - <button type="submit" name="user_task_id"
+                                    value="{{ $user->user_task_id }}">Remover usuário</button>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            </form>
+
+
             <form action="{{ route('func.task.associar') }}" method="post">
                 @csrf
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

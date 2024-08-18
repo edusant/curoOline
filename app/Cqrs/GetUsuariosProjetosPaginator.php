@@ -2,13 +2,17 @@
 namespace App\Cqrs;
 
 use App\Models\User;
+use App\Models\UserTask;
 
-class GetUsuariosProjetos
+class GetUsuariosProjetosPaginator
 {
-    public function get(int $projectId): object
+    public function get(int $projectId, int $taskId): object
     {
         return User::select('name', 'users.id')->where('project_user.project_id', $projectId)
         ->join('project_user', 'project_user.user_id', 'users.id')
-        ->paginator(10);
+        ->whereNotIn('users.id', UserTask::select('users.id')
+                ->join('users', 'users.id', 'user_tasks.user_id')
+                ->where('user_tasks.task_id', $taskId))
+        ->paginate(10);
     }
 }
