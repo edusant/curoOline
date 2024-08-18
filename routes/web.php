@@ -31,12 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('task')->group(function ()
     {
         Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
+        Route::put('atualizar/task', [TasksController::class, 'update'])->name('update.task');
+
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
         Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar');
 
         Route::post('remover/associar', [TasksController::class, 'removerUsuarioTask'])
         ->name('func.task.romover.associar');
+
     });
 
 });

@@ -28,13 +28,14 @@
 
 
 
-                <textarea id="message" rows="4" class="mt-1 block w-3/4" placeholder="Descrição da task" name="descricao"></textarea>
+                <textarea id="message" rows="4" class="mt-1 block w-3/4"
+                placeholder="Descrição da task" name="descricao"></textarea>
 
                 <label for=""> {{ __('Data encerramento do projeto') }}</label>
                 <input type="date" name="data_encerramento" id="date_encerramento">
 
-                <select id="status" name="status" class="mt-1 block w-3/4">
-                    <option selected value="pendente">Pendente</option>
+                <select id="status" value="concluida" name="status" class="mt-1 block w-3/4">
+                    <option value="pendente">Pendente</option>
                     <option value="em_progresso">Em Progresso</option>
                     <option value="concluida">Concluída</option>
                 </select>

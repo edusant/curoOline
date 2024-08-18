@@ -6,7 +6,10 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @include('projects.form-update-task')
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 Descrição: {{ $task->descricao }}
             </div>
