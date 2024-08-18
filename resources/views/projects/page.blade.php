@@ -14,6 +14,7 @@
                 @endif
                 @include('projects.form-create-task')
                 @include('projects.form-add-user')
+                @include('projects.form-update-projects')
             </div>
 
             @foreach ($tasks as $task)

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->text('descricao');
             $table->date('data_encerramento');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
 
         });
