@@ -77,9 +77,11 @@ it('atualiza um projeto existente user via resquest', function () {
     'project_id' => $project->id,
     'data_encerramento' => fake()->date()]);
 
+
+
     $response = $this
         ->actingAs($user)
-        ->post('/task/update', [
+        ->put('/task/update', [
             'titulo' => $novoTitulo,
             'descricao' => $novaDescricao,
             'status' => $novoStatus,
