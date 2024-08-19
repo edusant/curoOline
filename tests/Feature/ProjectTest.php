@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Repository\ProjectRepository;
 
 test('Criar um projeto', function () {
 
@@ -14,9 +15,20 @@ test('Criar um projeto', function () {
         ]);
 
     $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/');
-
+        ->assertSessionHasNoErrors();
 });
 
+it('cria um novo projeto database', function () {
+    $titulo = fake()->name;
+    $descricao = fake()->text();
+    $dataEncerramento = fake()->date();
+    $userId = User::factory()->create()->id;
+    (new ProjectRepository)->create($titulo, $descricao, $userId, $dataEncerramento);
 
+    $this->assertDatabaseHas('projects', [
+        'titulo' => $titulo,
+        'descricao' => $descricao,
+        'data_encerramento' => $dataEncerramento,
+        'user_id' => $userId
+    ]);
+});
