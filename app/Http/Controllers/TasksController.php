@@ -75,8 +75,8 @@ class TasksController extends Controller
     {
 
         $request->validate([
-            'task_id' => 'required',
-            'user_id' => 'required'
+            'task_id' => 'exists:tasks,id',
+            'user_id' => 'exists:tasks,id',
         ]);
 
         (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId: $request->task_id);
@@ -86,6 +86,10 @@ class TasksController extends Controller
 
     public function removerUsuarioTask(Request $request)
     {
+        $request->validate([
+            'user_task_id' => 'required|exists:user_tasks,id',
+        ]);
+
         UserTask::where('id', $request->user_task_id)->delete();
         return back()->with('status', 'usuário removido');
     }
