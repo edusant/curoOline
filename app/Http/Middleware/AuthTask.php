@@ -17,7 +17,7 @@ class AuthTask
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (!Gate::allows('update-task', $request->project_id)) {
+        if (!Gate::allows('update-task', $request->task_id)) {
             return redirect('/');
         }
         return $next($request);

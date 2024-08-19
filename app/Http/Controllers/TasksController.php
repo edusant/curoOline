@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cqrs\AssociarUsuarioAtask;
-use App\Cqrs\DestroyTask;
 use App\Cqrs\GetUsuariosProjetos;
 use App\Cqrs\GetUsuariosProjetosPaginator;
 use App\Cqrs\GetUsuariosResponsaveisTask;
-use App\Cqrs\UpdateTask;
 use App\Models\UserTask;
 use App\Repository\TaskRepository;
 use Illuminate\Http\Request;
@@ -37,6 +35,7 @@ class TasksController extends Controller
             );
 
             return redirect()->route('page.task', ['task_id' => $id])->with('status', 'task cadastrada');
+
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -124,11 +123,11 @@ class TasksController extends Controller
         try {
 
             $request->validate([
-                'id' => 'required|numeric'
+                'task_id' => 'required|numeric'
             ]);
 
-            (new DestroyTask)->create(
-                id: (int)$request->id,
+            (new TaskRepository)->delete(
+                id: (int)$request->task_id,
             );
 
             return back()->with('status', 'task cadastrada');

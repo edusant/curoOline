@@ -43,15 +43,19 @@ Route::middleware('auth')->group(function () {
     Route::prefix('task')->group(function ()
     {
 
-        Route::delete('/delete/task', [TasksController::class, 'destroy'])->name('delete.task');
+        Route::delete('/delete', [TasksController::class, 'destroy'])->name('delete.task')
+        ->middleware(AuthTask::class);
+
         Route::post('create', [TasksController::class, 'create'])->name('create.task')
         ->middleware(AuthProject::class);
         Route::put('update', [TasksController::class, 'update'])->name('update.task')
         ->middleware(AuthTask::class);
-
-        Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
-        Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
-        Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar');
+        Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task')
+        ->middleware(AuthTask::class);
+        Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar')
+        ->middleware(AuthTask::class);
+        Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar')
+        ->middleware(AuthTask::class);
 
         Route::post('remover/associar', [TasksController::class, 'removerUsuarioTask'])
         ->name('func.task.romover.associar');

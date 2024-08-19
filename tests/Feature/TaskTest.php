@@ -71,20 +71,21 @@ it('atualiza um projeto existente user via resquest', function () {
 
     $task = Tasks::factory()->create([
     'user_id' => $user->id,
-    'titulo' => $novoTitulo,
-    'descricao' => $novaDescricao,
-    'status' => $novoStatus,
+    'titulo' => "novoTitulo",
+    'descricao' => fake()->text(),
+    'status' => 'teste',
     'project_id' => $project->id,
-    'data_encerramento' => $novaDataEncerramento]);
+    'data_encerramento' => fake()->date()]);
 
     $response = $this
         ->actingAs($user)
         ->post('/task/update', [
-            'titulo' => fake()->name(),
-            'descricao' => fake()->text(),
-            'status' => 'pendente',
-            'data_encerramento' => fake()->date(),
+            'titulo' => $novoTitulo,
+            'descricao' => $novaDescricao,
+            'status' => $novoStatus,
+            'data_encerramento' => $novaDataEncerramento,
             'project_id' => $project->id,
+            'task_id' => $task->id
         ]);
 
     $response
@@ -98,5 +99,36 @@ it('atualiza um projeto existente user via resquest', function () {
             'status' => $novoStatus,
 
         ]);
+
+});
+
+
+it('delete task', function () {
+
+    $user = User::factory()->create();
+
+    $project = Projects::factory()->create([
+        'user_id' => $user->id,
+        'titulo' => fake()->name(),
+        'descricao' => fake()->text(),
+        'data_encerramento' => fake()->date()
+    ]);
+
+    $task = Tasks::factory()->create([
+    'user_id' => $user->id,
+    'titulo' => "novoTitulo",
+    'descricao' => fake()->text(),
+    'status' => 'teste',
+    'project_id' => $project->id,
+    'data_encerramento' => fake()->date()]);
+
+
+    $response = $this
+        ->actingAs($user)
+        ->delete('/task/delete', [
+            'task' => $task->id,
+        ]);
+
+    $response->assertSessionHasNoErrors();
 
 });

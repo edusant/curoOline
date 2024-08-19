@@ -52,7 +52,7 @@ class TaskRepository
     public function delete(int $id): void
     {
         DB::transaction(function () use ($id) {
-            Projects::where('id', $id)->delete();
+            Tasks::where('id', $id)->delete();
         });
     }
 

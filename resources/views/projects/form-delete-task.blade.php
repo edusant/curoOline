@@ -12,7 +12,7 @@
                 {{ __('tem certeza que quer excluir a task?') }}
             </h2>
 
-            <input type="hidden" name="id" value="{{ $task->id }}">
+            <input type="hidden" name="task_id" value="{{ $task->id }}">
 
             <div class="mt-6 flex justify-end">
                 <x-secondary-button x-on:click="$dispatch('close')">
