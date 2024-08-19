@@ -1,9 +1,30 @@
 <?php
 
+use App\Cqrs\AdicionaUsuarioEmProjeto;
 use App\Models\Projects;
 use App\Models\Tasks;
 use App\Models\User;
 use App\Repository\TaskRepository;
+
+
+beforeEach(function() {
+    $this->user = User::factory()->create();
+
+    $this->project = Projects::factory()->create([
+        'user_id' => $this->user->id,
+        'titulo' => fake()->name(),
+        'descricao' => fake()->text(),
+        'data_encerramento' => fake()->date()
+    ]);
+
+    $this->task = Tasks::factory()->create([
+    'user_id' => $this->user->id,
+    'titulo' => fake()->name(),
+    'descricao' => fake()->text(),
+    'status' => 'Pendente',
+    'project_id' => $this->project->id,
+    'data_encerramento' => fake()->date()]);
+});
 
 test('Criar uma task', function () {
 
@@ -132,5 +153,29 @@ it('delete task', function () {
         ]);
 
     $response->assertSessionHasNoErrors();
+
+});
+
+
+
+it('adiciona usuario a uma task', function () {
+
+    $user = User::factory()->create();
+
+    (new AdicionaUsuarioEmProjeto())->create($user->id, $this->project->id);
+
+    $response = $this
+    ->actingAs($user)
+    ->post('/task/associar', [
+        'task_id' => $this->task->id,
+        'user_id' => $user->id
+    ]);
+
+    $response->assertSessionHasNoErrors();
+
+    $this->assertDatabaseHas('user_tasks', [
+        'task_id' => $this->task->id,
+        'user_id' => $user->id
+    ]);
 
 });
