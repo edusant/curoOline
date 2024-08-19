@@ -32,7 +32,7 @@
                     <option {{ $task->status == 'concluida' ? 'selected' : '' }} value="concluida">Concluída</option>
                 </select>
 
-                <input type="hidden" name="id" value="{{ $task->id }}">
+                <input type="hidden" name="task_id" value="{{ $task->id }}">
             </div>
 
             <div class="mt-6 flex justify-end">

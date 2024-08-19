@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Models\Projects;
@@ -30,13 +31,20 @@ class TaskRepository
         return $id;
     }
 
-    public function update(string $titulo, string $descricao, int $id, string $dataEncerramento): void
-    {
-        DB::transaction(function () use ($descricao, $titulo, $dataEncerramento, $id) {
-            Projects::where('id', $id)->update([
+    public function update(
+        string $titulo,
+        string $descricao,
+        string $dataEncerramento,
+        int $id,
+        string $status
+    ): void {
+
+        DB::transaction(function () use ($id, $descricao, $titulo, $dataEncerramento, $status) {
+            Tasks::where('id', $id)->update([
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'data_encerramento' => $dataEncerramento,
+                'status' => $status,
             ]);
         });
     }
@@ -52,5 +60,4 @@ class TaskRepository
     {
         return Tasks::find($taskId);
     }
-
 }

@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('update-task', function (User $user, $taskId) {
-            return (new TaskRepository)->get($taskId)->user_id ?? null === $user->id
+            return (new TaskRepository)->get($taskId)->project->user_id ?? null === $user->id
                         ? Response::allow()
                         : Response::deny('');
         });

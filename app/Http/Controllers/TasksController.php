@@ -101,13 +101,13 @@ class TasksController extends Controller
                 'descricao' => 'required',
                 'data_encerramento' => 'required|date',
                 'status' => 'required|string',
-                'id' => 'required|numeric'
+                'task_id' => 'required|numeric'
             ]);
 
-            (new UpdateTask)->create(
+            (new TaskRepository)->update(
                 titulo: $request->titulo,
                 descricao: $request->descricao,
-                id: (int)$request->id,
+                id: (int)$request->task_id,
                 dataEncerramento: $request->data_encerramento,
                 status: $request->status
             );

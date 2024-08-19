@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Middleware\AuthProject;
+use App\Http\Middleware\AuthTask;
 use Illuminate\Support\Facades\Route;
 
 #Todo Exibir usuário associados, editar Task e projeto, deletar task e projeto,deletar associa projeto e task, noticar usuário
@@ -45,8 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/delete/task', [TasksController::class, 'destroy'])->name('delete.task');
         Route::post('create', [TasksController::class, 'create'])->name('create.task')
         ->middleware(AuthProject::class);
-        Route::put('update/task', [TasksController::class, 'update'])->name('update.task')
-;
+        Route::put('update', [TasksController::class, 'update'])->name('update.task')
+        ->middleware(AuthTask::class);
 
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');
