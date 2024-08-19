@@ -48,10 +48,9 @@ class TaskRepository
         });
     }
 
-    public function get(int $projectId): object
+    public function get(int $taskId): object
     {
-        return Projects::find($projectId);
+        return Tasks::find($taskId);
     }
-
 
 }
