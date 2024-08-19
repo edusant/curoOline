@@ -4,6 +4,7 @@ use App\Cqrs\GetProjects;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Middleware\AuthProject;
 use Illuminate\Support\Facades\Route;
 
 #Todo Exibir usuário associados, editar Task e projeto, deletar task e projeto,deletar associa projeto e task, noticar usuário
@@ -23,10 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::prefix('project')->group(function ()
     {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
-        Route::put('update', [ProjectsController::class, 'update'])->name('update.project');
+        Route::put('update', [ProjectsController::class, 'update'])->name('update.project')
+        ->middleware(AuthProject::class);
 
         Route::delete('delete', [ProjectsController::class, 'destroy'])->name('delete.project');
-
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
         Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user');
     });
@@ -35,9 +36,9 @@ Route::middleware('auth')->group(function () {
     {
 
         Route::delete('/delete/task', [TasksController::class, 'destroy'])->name('delete.task');
-
         Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
-        Route::put('update/task', [TasksController::class, 'update'])->name('update.task');
+        Route::put('update/task', [TasksController::class, 'update'])->name('update.task')
+;
 
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task');
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar');

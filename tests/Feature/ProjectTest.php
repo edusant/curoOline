@@ -64,3 +64,51 @@ it('atualiza um projeto existente', function () {
     ]);
 
 });
+
+
+it('atualiza um projeto existente user via resquest', function () {
+    $novoTitulo = fake()->name();
+    $novaDescricao = fake()->text();
+    $novaDataEncerramento = fake()->date();
+
+    $response = $this
+        ->actingAs($this->user)
+        ->put('/project/update', [
+            'id' => $this->project->id,
+            'titulo' => $novoTitulo,
+            'descricao' => $novaDescricao,
+            'data_encerramento' => $novaDataEncerramento,
+        ]);
+
+    $response
+        ->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('projects', [
+            'id' => $this->project->id,
+            'titulo' => $novoTitulo,
+            'descricao' => $novaDescricao,
+            'data_encerramento' => $novaDataEncerramento,
+        ]);
+
+});
+
+
+it('atualiza um projeto existente user não autorizado via resquest', function () {
+    $novoTitulo = fake()->name();
+    $novaDescricao = fake()->text();
+    $novaDataEncerramento = fake()->date();
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->put('/project/update', [
+            'id' => $this->project->id,
+            'titulo' => $novoTitulo,
+            'descricao' => $novaDescricao,
+            'data_encerramento' => $novaDataEncerramento,
+        ]);
+
+    $response->assertSessionHasNoErrors()
+    ->assertRedirect('/');
+
+});
