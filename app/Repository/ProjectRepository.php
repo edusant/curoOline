@@ -35,4 +35,11 @@ class ProjectRepository
             Projects::where('id', $id)->delete();
         });
     }
+
+    public function get(int $projectId): object
+    {
+        return Projects::find($projectId);
+    }
+
+
 }

@@ -128,3 +128,15 @@ it('delete projeto', function () {
     ->assertRedirect('/dashboard');
 
 });
+
+
+it('get Projeto', function () {
+
+    $project = Projects::factory()->create([  'user_id' => $this->user->id,
+    'titulo' => fake()->name(),
+    'descricao' => fake()->text(),
+    'data_encerramento' => fake()->date()]);
+    $result =  (new ProjectRepository)->get($project->id);
+    $this->assertEquals($project->id, $result->id);
+
+});

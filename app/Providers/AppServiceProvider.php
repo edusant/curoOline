@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Projects;
 use App\Models\User;
+use App\Repository\ProjectRepository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
@@ -23,9 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
         Gate::define('update-porject', function (User $user, $projectId) {
-            return Projects::find($projectId)->user_id ?? null === $user->id
+            return (new ProjectRepository)->get($projectId)->user_id ?? null === $user->id
                         ? Response::allow()
                         : Response::deny('');
         });
