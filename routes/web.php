@@ -48,10 +48,13 @@ Route::middleware('auth')->group(function () {
 
         Route::post('create', [TasksController::class, 'create'])->name('create.task')
         ->middleware(AuthProject::class);
+
         Route::put('update', [TasksController::class, 'update'])->name('update.task')
         ->middleware(AuthTask::class);
+
         Route::get('/{task_id}', [TasksController::class, 'get'])->name('page.task')
         ->middleware(AuthTask::class);
+
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar')
         ->middleware(AuthTask::class);
 

@@ -1,9 +1,11 @@
 <?php
 
 use App\Cqrs\AdicionaUsuarioEmProjeto;
+use App\Cqrs\AssociarUsuarioAtask;
 use App\Models\Projects;
 use App\Models\Tasks;
 use App\Models\User;
+use App\Models\UserTask;
 use App\Repository\TaskRepository;
 
 
@@ -165,7 +167,7 @@ it('adiciona usuario a uma task', function () {
     (new AdicionaUsuarioEmProjeto())->create($user->id, $this->project->id);
 
     $response = $this
-    ->actingAs($user)
+    ->actingAs($this->user)
     ->post('/task/associar', [
         'task_id' => $this->task->id,
         'user_id' => $user->id
@@ -177,5 +179,28 @@ it('adiciona usuario a uma task', function () {
         'task_id' => $this->task->id,
         'user_id' => $user->id
     ]);
+
+});
+
+
+
+it('remover usuario de uma task', function () {
+
+    $user = User::factory()->create();
+
+    (new AdicionaUsuarioEmProjeto())->create($user->id, $this->project->id);
+
+    (new AssociarUsuarioAtask)->create(userId: $user->id, taskId: $this->task->id);
+
+    $id = UserTask::where('user_id', $user->id)->first()->id;
+
+
+    $response = $this
+    ->actingAs($this->user)
+    ->post('/remover/associar', [
+        'task_user_id' => $id,
+    ]);
+
+    $response->assertSessionHasNoErrors();
 
 });
