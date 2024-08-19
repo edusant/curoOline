@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project')
         ->middleware(AuthProject::class);
 
-        Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user')
+        Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user.project')
         ->middleware(AuthProject::class);
 
     });
