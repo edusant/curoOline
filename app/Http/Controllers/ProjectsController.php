@@ -49,7 +49,7 @@ class ProjectsController extends Controller
                 'data_encerramento' => 'required|date'
             ]);
 
-            (new UpdateProjectsComand)->create(
+            (new ProjectRepository)->update(
                 titulo: $request->titulo,
                 descricao: $request->descricao,
                 dataEncerramento: $request->data_encerramento,
@@ -57,6 +57,7 @@ class ProjectsController extends Controller
             );
 
             return back()->with('status', 'Projeto atualizado');
+
         } catch (\Throwable $th) {
             info($th);
         }
