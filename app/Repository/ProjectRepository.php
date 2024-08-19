@@ -28,4 +28,11 @@ class ProjectRepository
             ]);
         });
     }
+
+    public function delete(int $id): void
+    {
+        DB::transaction(function () use ($id) {
+            Projects::where('id', $id)->delete();
+        });
+    }
 }

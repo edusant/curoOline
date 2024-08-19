@@ -11,6 +11,7 @@ use App\Cqrs\GetUsuariosProjetos;
 use App\Cqrs\UpdateProjectsComand;
 use App\Repository\ProjectRepository;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 use function Laravel\Prompts\error;
 
@@ -45,7 +46,7 @@ class ProjectsController extends Controller
             $request->validate([
                 'titulo' => 'required|max:255',
                 'descricao' => 'required',
-                'id' => 'required',
+                'project_id' => 'required',
                 'data_encerramento' => 'required|date'
             ]);
 
@@ -53,7 +54,7 @@ class ProjectsController extends Controller
                 titulo: $request->titulo,
                 descricao: $request->descricao,
                 dataEncerramento: $request->data_encerramento,
-                id: $request->id
+                id: $request->project_id
             );
 
             return back()->with('status', 'Projeto atualizado');
@@ -91,14 +92,14 @@ class ProjectsController extends Controller
     {
         try {
             $request->validate([
-                'id' => 'required',
+                'project_id' => 'required',
             ]);
 
-            (new DeleteProjectsComand)->create(
-                id: $request->id
+            (new ProjectRepository)->delete(
+                id: $request->project_id
             );
 
-            return back()->with('status', 'Projeto atualizado');
+            return redirect('/dashboard')->with('status', 'Projeto atualizado');
 
         } catch (\Throwable $th) {
             dd($th);

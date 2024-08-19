@@ -36,7 +36,7 @@
                 <label for="">   {{ __('Data encerramento do projeto') }}</label>
                 <input type="date"value="{{ $projeto->data_encerramento }}"
                 name="data_encerramento" id="date_encerramento">
-                <input type="hidden" name="id" value="{{ $projeto->id }}">
+                <input type="hidden" name="project_id" value="{{ $projeto->id }}">
 
             </div>
 

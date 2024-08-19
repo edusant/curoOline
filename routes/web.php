@@ -24,12 +24,19 @@ Route::middleware('auth')->group(function () {
     Route::prefix('project')->group(function ()
     {
         Route::post('create', [ProjectsController::class, 'create'])->name('create_project');
+
         Route::put('update', [ProjectsController::class, 'update'])->name('update.project')
         ->middleware(AuthProject::class);
 
-        Route::delete('delete', [ProjectsController::class, 'destroy'])->name('delete.project');
-        Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project');
-        Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user');
+        Route::delete('delete', [ProjectsController::class, 'destroy'])->name('delete.project')
+        ->middleware(AuthProject::class);
+
+        Route::get('/{project_id}', [ProjectsController::class, 'list'])->name('page.project')
+        ->middleware(AuthProject::class);
+
+        Route::post('add/user', [ProjectsController::class, 'addUser'])->name('add.user')
+        ->middleware(AuthProject::class);
+
     });
 
     Route::prefix('task')->group(function ()

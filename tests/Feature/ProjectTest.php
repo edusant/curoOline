@@ -74,7 +74,7 @@ it('atualiza um projeto existente user via resquest', function () {
     $response = $this
         ->actingAs($this->user)
         ->put('/project/update', [
-            'id' => $this->project->id,
+            'project_id' => $this->project->id,
             'titulo' => $novoTitulo,
             'descricao' => $novaDescricao,
             'data_encerramento' => $novaDataEncerramento,
@@ -102,7 +102,7 @@ it('atualiza um projeto existente user não autorizado via resquest', function (
     $response = $this
         ->actingAs($user)
         ->put('/project/update', [
-            'id' => $this->project->id,
+            'project_id' => $this->project->id,
             'titulo' => $novoTitulo,
             'descricao' => $novaDescricao,
             'data_encerramento' => $novaDataEncerramento,

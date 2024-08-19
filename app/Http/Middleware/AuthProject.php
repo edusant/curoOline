@@ -16,9 +16,10 @@ class AuthProject
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Gate::allows('update-porject', $request->id)) {
+        if (!Gate::allows('update-porject', $request->project_id)) {
            return redirect('/');
         }
+
         return $next($request);
     }
 }

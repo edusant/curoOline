@@ -15,7 +15,7 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Excluindo projeto') }}
         </h2>
-        <input type="hidden" name="id" value="{{ $projeto->id }}">
+        <input type="hidden" name="project_id" value="{{ $projeto->id }}">
 
         <div class="mt-6 flex justify-end">
             <x-secondary-button x-on:click="$dispatch('close')">
