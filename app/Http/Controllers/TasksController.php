@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Cqrs\AssociarUsuarioAtask;
-use App\Cqrs\CreateTask;
 use App\Cqrs\DestroyTask;
 use App\Cqrs\GetTaskPorID;
 use App\Cqrs\GetUsuariosProjetos;
@@ -11,6 +10,7 @@ use App\Cqrs\GetUsuariosProjetosPaginator;
 use App\Cqrs\GetUsuariosResponsaveisTask;
 use App\Cqrs\UpdateTask;
 use App\Models\UserTask;
+use App\Repository\TaskRepository;
 use Illuminate\Http\Request;
 
 class TasksController extends Controller
@@ -28,7 +28,7 @@ class TasksController extends Controller
                 'project_id' => 'required'
             ]);
 
-            $id = (new CreateTask)->create(
+            $id = (new TaskRepository)->create(
                 titulo: $request->titulo,
                 descricao: $request->descricao,
                 dataEncerramento: $request->data_encerramento,

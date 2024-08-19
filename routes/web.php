@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     {
 
         Route::delete('/delete/task', [TasksController::class, 'destroy'])->name('delete.task');
-        Route::post('create/task', [TasksController::class, 'create'])->name('create.task');
+        Route::post('create', [TasksController::class, 'create'])->name('create.task')
+        ->middleware(AuthProject::class);
         Route::put('update/task', [TasksController::class, 'update'])->name('update.task')
 ;
 
