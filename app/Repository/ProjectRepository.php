@@ -1,11 +1,10 @@
 <?php
-
-namespace App\Cqrs;
+namespace App\Repository;
 
 use App\Models\Projects;
 use Illuminate\Support\Facades\DB;
 
-class CreaterProjectsComand
+class ProjectRepository
 {
 
     public function create(string $titulo, string $descricao, int $userId, string $dataEncerramento): void

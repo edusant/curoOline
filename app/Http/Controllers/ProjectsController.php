@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Cqrs\AdicionaUsuarioEmProjeto;
-use App\Cqrs\CreaterProjectsComand;
 use App\Cqrs\DeleteProjectsComand;
 use App\Cqrs\GetIdUserPorEmail;
 use App\Cqrs\GetProjectPorID;
 use App\Cqrs\GetTasks;
 use App\Cqrs\GetUsuariosProjetos;
 use App\Cqrs\UpdateProjectsComand;
+use App\Repository\ProjectRepository;
 use Illuminate\Http\Request;
 
 use function Laravel\Prompts\error;
@@ -25,7 +25,7 @@ class ProjectsController extends Controller
                 'data_encerramento' => 'required|date'
             ]);
 
-            (new CreaterProjectsComand)->create(
+            (new ProjectRepository)->create(
                 titulo: $request->titulo,
                 descricao: $request->descricao,
                 dataEncerramento: $request->data_encerramento,
