@@ -10,7 +10,7 @@ class AdicionaUsuarioEmProjeto
     public function create(int $userId, int $projectId): void
     {
         DB::transaction(function () use ($userId, $projectId) {
-            return ProjectUser::insert([
+            return ProjectUser::firstOrCreate([
                 'user_id' => $userId,
                 'project_id' => $projectId
             ]);

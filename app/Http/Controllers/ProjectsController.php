@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Cqrs\AdicionaUsuarioEmProjeto;
-use App\Cqrs\DeleteProjectsComand;
 use App\Cqrs\GetIdUserPorEmail;
-use App\Cqrs\GetProjectPorID;
 use App\Cqrs\GetTasks;
 use App\Cqrs\GetUsuariosProjetos;
-use App\Cqrs\UpdateProjectsComand;
+use App\Models\ProjectUser;
 use App\Repository\ProjectRepository;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+use Illuminate\Validation\Rule;
 
 use function Laravel\Prompts\error;
 
@@ -76,12 +75,13 @@ class ProjectsController extends Controller
     public function addUser(Request $request)
     {
 
+        $userId = (new GetIdUserPorEmail)->get($request->email);
+
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|exists:users,email',
             'project_id' => 'required'
         ]);
 
-        $userId = (new GetIdUserPorEmail)->get($request->email);
 
         (new AdicionaUsuarioEmProjeto)->create($userId, $request->project_id);
 

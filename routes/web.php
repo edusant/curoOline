@@ -54,6 +54,7 @@ Route::middleware('auth')->group(function () {
         ->middleware(AuthTask::class);
         Route::get('associar/{task_id}', [TasksController::class, 'associar'])->name('page.task.associar')
         ->middleware(AuthTask::class);
+
         Route::post('associar', [TasksController::class, 'associarUsuarioTask'])->name('func.task.associar')
         ->middleware(AuthTask::class);
 
