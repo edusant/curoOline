@@ -5,7 +5,7 @@
         x-on:click.prevent="$dispatch('open-modal', 'add-user')">{{ __('ver/adicionar usuários') }}</x-primary-button>
 
     <x-modal name="add-user" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('add.user') }}" class="p-6">
+        <form method="post" action="{{ route('add.user.project') }}" class="p-6">
             @csrf
             @method('post')
 

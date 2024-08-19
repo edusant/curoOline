@@ -140,3 +140,25 @@ it('get Projeto', function () {
     $this->assertEquals($project->id, $result->id);
 
 });
+
+
+
+it('adicionar Usuario teste', function () {
+
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($this->user)
+        ->post('/project/add/user', [
+            'project_id' => $this->project->id,
+            'email' => $user->email,
+        ]);
+
+    $response
+        ->assertSessionHasNoErrors();
+
+        $this->assertDatabaseHas('project_user', [
+            'project_id' => $this->project->id,
+            'user_id' => $user->id,
+        ]);
+});
