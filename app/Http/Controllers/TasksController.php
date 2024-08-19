@@ -79,6 +79,7 @@ class TasksController extends Controller
 
         (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId: $request->task_id);
         return back()->with('status', 'usuário associado');
+
     }
 
     public function removerUsuarioTask(Request $request)

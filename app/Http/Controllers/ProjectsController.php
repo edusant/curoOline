@@ -67,7 +67,8 @@ class ProjectsController extends Controller
     {
         return view('projects.page', [
             'projeto' => (new ProjectRepository)->get($request->project_id),
-            'tasks' => (new GetTasks)->get($request->project_id),
+            'tasks' => (new GetTasks)->get($request->project_id, de: $request->de, ate: $request->ate,
+            status: $request->status),
             'usersProject' => (new GetUsuariosProjetos)->get($request->project_id)
         ]);
     }
