@@ -8,7 +8,9 @@ use App\Cqrs\GetUsuariosProjetosPaginator;
 use App\Cqrs\GetUsuariosResponsaveisTask;
 use App\Models\UserTask;
 use App\Repository\TaskRepository;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TasksController extends Controller
 {
@@ -69,10 +71,10 @@ class TasksController extends Controller
 
     public function associarUsuarioTask(Request $request)
     {
-
         $request->validate([
             'task_id' => 'exists:tasks,id',
-            'user_id' => 'exists:users,id',
+            'user_id' => ['exists:users,id', 'email' => Rule::unique('user_tasks')
+            ->where(fn (Builder $query) => $query->where('user_tasks.task_id', $request->task_id))],
         ]);
 
         (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId: $request->task_id);

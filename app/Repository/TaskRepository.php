@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\Projects;
 use App\Models\Tasks;
+use App\Services\NotificarUpdateEmTaskService;
 use Illuminate\Support\Facades\DB;
 
 class TaskRepository
@@ -47,6 +48,9 @@ class TaskRepository
                 'status' => $status,
             ]);
         });
+
+        (new NotificarUpdateEmTaskService)->execute($id);
+
     }
 
     public function delete(int $id): void
