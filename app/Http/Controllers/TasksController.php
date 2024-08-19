@@ -35,7 +35,6 @@ class TasksController extends Controller
             );
 
             return redirect()->route('page.task', ['task_id' => $id])->with('status', 'task cadastrada');
-
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -45,9 +44,7 @@ class TasksController extends Controller
     {
         $task =  (new TaskRepository)->get($request->task_id);
         $projectId = $task->project->id;
-
         $responsaveis =  (new GetUsuariosResponsaveisTask)->get($request->task_id);
-
 
         return view('task.page', [
 
@@ -61,7 +58,6 @@ class TasksController extends Controller
     public function associar(Request $request)
     {
         $task =  (new TaskRepository)->get($request->task_id);
-
         $responsaveis =  (new GetUsuariosResponsaveisTask)->get($request->task_id);
 
         return view('task.pageassociar', [
@@ -91,6 +87,7 @@ class TasksController extends Controller
         ]);
 
         UserTask::where('id', $request->user_task_id)->delete();
+
         return back()->with('status', 'usuário removido');
     }
 
@@ -116,7 +113,6 @@ class TasksController extends Controller
             );
 
             return back()->with('status', 'task cadastrada');
-
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -135,7 +131,6 @@ class TasksController extends Controller
             );
 
             return back()->with('status', 'task cadastrada');
-
         } catch (\Throwable $th) {
             dd($th);
         }
