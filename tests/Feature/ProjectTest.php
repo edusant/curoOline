@@ -112,3 +112,19 @@ it('atualiza um projeto existente user não autorizado via resquest', function (
     ->assertRedirect('/');
 
 });
+
+
+it('delete projeto', function () {
+
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->delete('/project/delete', [
+            'project_id' => $this->project->id,
+        ]);
+
+    $response->assertSessionHasNoErrors()
+    ->assertRedirect('/dashboard');
+
+});

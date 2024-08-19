@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Gate::define('update-porject', function (User $user, $projectId) {
-            return Projects::find($projectId)->user_id === $user->id
+            return Projects::find($projectId)->user_id ?? null === $user->id
                         ? Response::allow()
                         : Response::deny('');
         });
