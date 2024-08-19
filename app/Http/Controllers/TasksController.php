@@ -72,11 +72,10 @@ class TasksController extends Controller
 
         $request->validate([
             'task_id' => 'exists:tasks,id',
-            'user_id' => 'exists:tasks,id',
+            'user_id' => 'exists:users,id',
         ]);
 
         (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId: $request->task_id);
-
         return back()->with('status', 'usuário associado');
     }
 

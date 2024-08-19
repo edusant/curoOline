@@ -1,8 +1,11 @@
 <?php
 namespace App\Cqrs;
 
+use App\Models\User;
 use App\Models\UserTask;
+use App\Notifications\AssociarUsuarioTask;
 use Illuminate\Support\Facades\DB;
+use App\Services\NotificarAssociacaoEmTaskService;
 
 class AssociarUsuarioAtask
 {
@@ -14,5 +17,8 @@ class AssociarUsuarioAtask
                 'task_id' => $taskId
             ]);
         });
+
+        (new NotificarAssociacaoEmTaskService)->execute(taskId: $taskId);
+
     }
 }
