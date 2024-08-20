@@ -117,3 +117,75 @@ Excluir task apenas o dono do projeto pode fazer
 
 
 
+# respostas questinario
+
+
+1. Explique a diferença entre Eloquent ORM e Query Builder no Laravel. Quais são os prós
+e contras de cada abordagem?
+
+ORM que permite trabalhar com bancos de dados de uma maneira orientada a objetos
+com um alto nível de abstração que pode interagir com outros recursos do laravel
+como as polices e as factories.
+
+já O query builder é uma forma de fazer consultas ao banco de dados de forma simples
+e rápida via facades disponibilizado pelo laravel
+
+O orm é mais completo em funcionalidades e mais lento que o query builder, o query builder é mais simples e permite consultas mais complexas e simples
+
+
+
+2. Como você garantiria a segurança de uma aplicação Laravel ao lidar com entradas de
+usuários e dados sensíveis? Liste pelo menos três práticas recomendadas e explique
+cada uma delas.
+Aplicando padrões de segurança  como:
+Validação de Dados
+Utilizar o sistema de validação (validation) para garantir que as entradas de
+usuários estejam no formato esperado.
+Autenticação
+Permitir que apenas usuários autorizados tenha acesso aos dados, por meio de login e token
+criptografia
+Usar crypto para esconder dados sensíveis como a senha e números de documentos de um possível atacante
+
+
+
+3. Qual é o papel dos Middlewares no Laravel e como eles se integram ao pipeline de
+requisição? Dê um exemplo prático de como você criaria e aplicaria um Middleware
+personalizado para verificar se o usuário está ativo antes de permitir o acesso a uma rota
+específica.
+os Middlewares são uma forma de filtrar e manipular requisição HTTP
+os filtros são acessados antes das rotas serem carregadas
+Exemplo: eu poderia chamar o middleware auth para verificar se o usuário está logado,
+este middleware analisaria se o usuário fez a sessão antes de iniciar a rota
+
+
+4. Descreva como o Laravel gerencia migrations e como isso é útil para o desenvolvimento
+de aplicações. Quais são as melhores práticas ao criar e aplicar migrations?
+
+migration é um sistema robusto para gerenciar migrações de banco de dados,
+ela permite que as migrates sejam gerenciadas através da tempo que elas
+são criadas
+boas praticas
+1 Manter um nome pequeno
+2 criar migrations pequenas
+3 Use o seeds para popular o banco
+4 Teste e documente qualquer mudança
+5 criar rollback para as migrations
+
+
+
+5. Qual é a diferença entre transações e savepoints no SQL Server? Como você usaria
+transações em um ambiente Laravel?
+
+Transações são um conjunto de operações do banco de dados que são tratadas como
+uma carga de trabalho única.
+Se qualquer operação dentro da transação apresentar erro, todas as outras operações são revertidas dentro da transição
+
+Savepoints, são pontos marcados dentro de uma
+transação (sub transações) que podem ser revertidos para um estado anterior
+sem ter que desfazer toda a transação.
+
+Em Laravel, você pode usar transações para garantir a integridade dos dados usando o query build
+
+
+
+
