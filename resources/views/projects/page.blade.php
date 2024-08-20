@@ -21,35 +21,36 @@
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-city">
-                                De (Vencimento)
+                                {{ __('De (Vencimento)') }}
                             </label>
-                            <input name="de"
+                            <input name="de" value="{{request('de')}}"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-city" type="date">
+                                id="de-date" type="date">
                         </div>
 
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-zip">
-                                Até (Vencimento)
+                                {{ __('Até (Vencimento)') }}
                             </label>
-                            <input name="ate"
+                            <input name="ate" value="{{request('ate')}}"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-zip" type="date">
+                                id="ate-date" type="date">
                         </div>
 
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-state">
-                                Status
+                                {{ __('Status') }}
                             </label>
                             <div class="relative">
                                 <select name="status"
                                     class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="grid-state">
-                                    <option value="">Todos</option>
-                                    <option value="{{ config('statustasks.pendente') }}">Pendente</option>
-                                    <option value="{{config('statustasks.em_progresso')}}">Em progresso</option>
+                                    <option value="{{request('status')}}">{{ __('Todos') }}</option>
+                                    <option value="{{ config('statustasks.pendente') }}">{{ __('Pendente') }}</option>
+                                    <option value="{{config('statustasks.em_progresso')}}">
+                                    {{__('Em progresso') }}</option>
                                     <option>Concluída</option>
                                 </select>
                                 <div

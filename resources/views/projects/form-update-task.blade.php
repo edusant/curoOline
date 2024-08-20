@@ -35,6 +35,7 @@
 
                     <option {{ $task->status == config('statustasks.concluida') ? 'selected' : '' }}
                         value="concluida">{{ __('Concluída') }}</option>
+
                 </select>
 
                 <input type="hidden" name="task_id" value="{{ $task->id }}">
