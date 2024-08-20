@@ -11,11 +11,13 @@
                 @if (session('status'))
                     {{ session('status') }}
                 @endif
-                @include('projects.form-create-task')
-                @include('projects.form-add-user')
-                @include('projects.form-update-projects')
-                @include('projects.form-delete-projects')
 
+                @can('update-project', $projeto->id)
+                    @include('projects.form-create-task')
+                    @include('projects.form-add-user')
+                    @include('projects.form-update-projects')
+                    @include('projects.form-delete-projects')
+                @endcan
                 <form class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-3 mb-2">
                         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">

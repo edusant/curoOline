@@ -8,8 +8,10 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @include('projects.form-update-task')
-            @include('projects.form-delete-task')
+            @can('update-task', $task->id)
+                @include('projects.form-update-task')
+                @include('projects.form-delete-task')
+            @endcan
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 Descrição: {{ $task->descricao }}
@@ -21,20 +23,27 @@
                 Data vencimento: {{ $task->data_encerramento }}
             </div>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                Responsáveis:
-                <hr>
-                @foreach ($userResponsaveis as $responsavel)
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-gray-900">
-                            {{ $responsavel->name }} - {{ $responsavel->id }}
+            @can('update-task', $task->id)
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+                    @foreach ($userResponsaveis as $responsavel)
+                    @if ($userResponsaveis->first())
+                        Responsáveis:
+                        <hr>
+                    @endif
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900">
+                                {{ $responsavel->name }} - {{ $responsavel->id }}
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                <a href="{{ route('page.task.associar', ['task_id' => $task->id]) }}">Gerenciar Responsáveis</a>
+                    <a href="{{ route('page.task.associar', ['task_id' => $task->id]) }}">Gerenciar Responsáveis</a>
 
-            </div>
+                </div>
+            @endcan
+
+
 
         </div>
     </div>

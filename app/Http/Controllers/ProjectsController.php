@@ -7,11 +7,8 @@ use App\Cqrs\GetIdUserPorEmail;
 use App\Cqrs\GetTasks;
 use App\Cqrs\GetTasksExportesExcel;
 use App\Cqrs\GetUsuariosProjetos;
-use App\Models\ProjectUser;
 use App\Repository\ProjectRepository;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 use function Laravel\Prompts\error;
 
