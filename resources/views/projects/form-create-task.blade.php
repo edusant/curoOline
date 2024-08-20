@@ -35,9 +35,10 @@
                 <input type="date" name="data_encerramento" id="date_encerramento">
 
                 <select id="status" value="concluida" name="status" class="mt-1 block w-3/4">
-                    <option value="{{config('statustasks.pendente')}}">Pendente</option>
-                    <option value="em_progresso">Em Progresso</option>
-                    <option value="concluida">Concluída</option>
+                    <option value="{{config('statustasks.pendente')}}">{{ __('Pendente') }}</option>
+                    <option value="{{config('statustasks.em_progresso')}}"
+                     value="{{config('statustasks.em_progresso')}}">{{ __('Em Progresso') }}</option>
+                    <option value="{{config('statustasks.concluida')}}">{{ __('Concluída') }} </option>
                 </select>
 
                 <input type="hidden" name="project_id" value="{{ $projeto->id }}">
