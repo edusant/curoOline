@@ -83,13 +83,12 @@ class ProjectsController extends Controller
     public function addUser(Request $request)
     {
 
-        $userId = (new GetIdUserPorEmail)->get($request->email);
-
         $request->validate([
             'email' => 'required|exists:users,email',
             'project_id' => 'required'
         ]);
 
+        $userId = (new GetIdUserPorEmail)->get($request->email);
 
         (new AdicionaUsuarioEmProjeto)->create($userId, $request->project_id);
 
