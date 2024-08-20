@@ -1,0 +1,55 @@
+1
+
+ORM que permite trabalhar com bancos de dados de uma maneira orientada a objetos
+com um alto nível de abstração que pode interagir com outros recusos do laravel
+como as polices, as factorys
+
+já O queirie builder é uma forma de fazer consultas ao banco de dados de forma simples
+e rápida via facades
+
+O orm é mais complexo e mais lento que o querie build, o querie bulder é mais simples e permite
+consultas mais complexas
+
+
+2
+Validação de Dados
+Utilizar o sistema de validação (valifator) para garantir que as entradas de
+usuários estejam no formato esperado.
+
+Authenticação
+Permitir que apenas usuários autorizados tenha acesso aos dados
+
+criptografia
+Usar crypto para escondar dados sensiveis como a senha de um possivel atacante
+
+
+3
+os Middlewares são uma forma de filtrar e manipular requisição HTTP
+os filtros são acessados antes das rotas serem carregadas
+Exemplo: eu poderia chamar o mmiddwer auth para reficar se o usuário tá logado,
+este middwer analisaria se o usuário fez a sessão antes de iniciar a rota
+
+
+4
+migration é um sistema robusto para gerenciar migrações de banco de dados,
+ela permite que as migrates sejam gerenciadas atraves da tempo que elas
+são criadas
+
+boas praticas
+1 Manter um nome pequeno
+2 criar migrations pequenas
+3 Use o seeds para popular o banco
+4 Teste e documente qualquer mudança
+
+5
+
+Transações são um conjunto de operações do banco de dados que são tratadas como
+uma carga trabalho única.
+Se qualquer operação dentro da transação aprensentar erro, todas as outras operações são revertidas dentro da transição
+
+Savepoints, são pontos marcados dentro de uma
+transação (subtransações) que podem ser revertidos para um estado anterior
+sem ter que desfazer toda a transação.
+
+Em Laravel, você pode usar transações para garantir a integridade dos dados usando o querie build
+
