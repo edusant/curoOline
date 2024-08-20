@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_user', function (Blueprint $table) {
+         Schema::create('project_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->constrained()
@@ -33,5 +33,7 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('project_user');
+
     }
 };
