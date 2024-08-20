@@ -64,5 +64,55 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# curoOline
-# curoOline
+# toDO
+
+O gestor de projetos possue as seguintes funcionalidades:
+
+Cadastrar projetos  qualquer usuário pode fazer
+    cadastrar Titulo, data encerramento e descrição
+Ver projeto, o criador ou um usuário participante podem acessar
+
+Atualizar projeto Apenas o dono do projeto tem essa funcionalidade
+    atualizar Titulo, data encerramento e descrição
+Excluir projeto apenas o dono do projeto pode fazer
+
+
+Associar usuário ou  projeto apenas o dono do projeto pode fazer,  desde que o usuário tenha uma conta 
+cadastrada
+
+Associar a uma  task somente o dono do projeto pode fazer,  desde que o usuário tenha acesso 
+ao projeto
+
+remover usuário de uma task   apenas  o dono do projeto pode fazer,  desde que o usuário tenha acesso 
+a task
+
+Criar task apenas o dono do projeto tem acesso 
+    cadastrar Titulo, data encerramento, descrição e status
+Ver task, o criador ou um usuário associado a task podem acessar
+
+Atualizar task Apenas o dono do projeto tem essa funcionalidade
+    atualizar Titulo, data encerramento, descrição e status
+
+Excluir task apenas o dono do projeto pode fazer
+
+
+
+
+# toDO
+
+# runProject
+
+1 Instalar o docker compose
+
+2 executar o comando: docker compose up -d
+
+3 rodar docker ps e ver o id do projeto php
+
+4 acessar o docker exec -it <<idPhp>> bash
+    4.1 executar o php artisan migrate 
+
+5 abrir um novo terminal 
+    5.1 se caso tiver o npm na sua maquina local executar os comandos npm install e npm run dev
+
+
+

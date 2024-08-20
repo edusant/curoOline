@@ -74,12 +74,11 @@ class TasksController extends Controller
         $request->validate([
             'task_id' => 'exists:tasks,id',
             'user_id' => ['exists:users,id', 'email' => Rule::unique('user_tasks')
-            ->where(fn (Builder $query) => $query->where('user_tasks.task_id', $request->task_id))],
+                ->where(fn (Builder $query) => $query->where('user_tasks.task_id', $request->task_id))],
         ]);
 
         (new AssociarUsuarioAtask)->create(userId: $request->user_id, taskId: $request->task_id);
         return back()->with('status', 'usuário associado');
-
     }
 
     public function removerUsuarioTask(Request $request)
@@ -122,19 +121,15 @@ class TasksController extends Controller
 
     public function destroy(Request $request)
     {
-        try {
 
-            $request->validate([
-                'task_id' => 'required|numeric'
-            ]);
+        $request->validate([
+            'task_id' => 'required|numeric'
+        ]);
 
-            (new TaskRepository)->delete(
-                id: (int)$request->task_id,
-            );
+        (new TaskRepository)->delete(
+            id: (int)$request->task_id,
+        );
 
-            return back()->with('status', 'task cadastrada');
-        } catch (\Throwable $th) {
-            dd($th);
-        }
+        return redirect('/dashboard')->with('status', 'task cadastrada');
     }
 }

@@ -31,7 +31,7 @@
                 <textarea id="message" rows="4" class="mt-1 block w-3/4"
                 placeholder="Descrição da task" name="descricao"></textarea>
 
-                <label for=""> {{ __('Data encerramento do projeto') }}</label>
+                <label for=""> {{ __('Data vencimento da tarefa') }}</label>
                 <input type="date" name="data_encerramento" id="date_encerramento">
 
                 <select id="status" value="concluida" name="status" class="mt-1 block w-3/4">
