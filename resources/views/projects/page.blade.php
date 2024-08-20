@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            descrição: {{ $projeto->titulo }}
+            {{ __('Projeto:') }}  {{ $projeto->titulo }}
         </h2>
-        <p class="font-semibold"> Projeto: {{ $projeto->descricao }}</p>
+        <p class="font-semibold"> {{ __('descrição:') }}   {{ $projeto->descricao }}</p>
     </x-slot>
 
     <div class="py-12">
@@ -72,7 +72,11 @@
                             Filtrar
                         </button>
 
-                        <input value=" {{ __('baixar relatório') }}" name="baixar_excel"
+                        <input value=" {{ __('excel') }}" name="baixar_excel"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                        </input>
+
+                        <input value=" {{ __('pdf') }}" name="baixar_excel"
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
                         </input>
 
