@@ -1,7 +1,5 @@
 FROM php:8.2-fpm
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 RUN apt-get update && apt-get install -y \
         libpng-dev \
         zlib1g-dev \
@@ -17,12 +15,12 @@ RUN apt-get update && apt-get install -y \
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
-RUN composer install
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN chown -R www-data:www-data /var/www/html
 
+RUN apt-get update && apt-get install -y nodejs npm
 
-
- RUN chown -R www-data:www-data /var/www/html
-
+RUN node -v && npm -v
