@@ -110,6 +110,7 @@ Excluir task apenas o dono do projeto pode fazer
 
 4 acessar o docker exec -it <<idPhp>> bash
     4.1 executar o php artisan migrate 
+    4.2 executar e manter php artisan queue:work
 
 5 abrir um novo terminal 
     5.1 se caso tiver o npm na sua maquina local executar os comandos npm install e npm run dev

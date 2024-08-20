@@ -23,7 +23,6 @@
                 Data vencimento: {{ $task->data_encerramento }}
             </div>
 
-            @can('update-task', $task->id)
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     @foreach ($userResponsaveis as $responsavel)
@@ -37,11 +36,11 @@
                             </div>
                         </div>
                     @endforeach
-
-                    <a href="{{ route('page.task.associar', ['task_id' => $task->id]) }}">Gerenciar Responsáveis</a>
+                    @can('update-task', $task->id)
+                     <a href="{{ route('page.task.associar', ['task_id' => $task->id]) }}">Gerenciar Responsáveis</a>
+                    @endcan
 
                 </div>
-            @endcan
 
 
 

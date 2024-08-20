@@ -42,7 +42,7 @@ class UpdateTask extends Notification implements ShouldQueue
         return (new MailMessage)
         ->subject("Sua task foi modifica {$this->taskNome}")
         ->line('Fique a vontade para ver.')
-        ->action('Acessar a task', url('/'))
+        ->action('Acessar a task', url("/task/{$this->taskId}"))
         ->line('Thank you for using our application!');
     }
 

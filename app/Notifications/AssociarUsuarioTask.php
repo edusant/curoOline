@@ -44,7 +44,7 @@ class AssociarUsuarioTask extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->subject("Você foi adicionado a task {$this->taskNome}")
                     ->line('Fique a vontade para começar.')
-                    ->action('Acessar a task', url('/'))
+                    ->action('Acessar a task', url("/task/{$this->taskId}"))
                     ->line('Thank you for using our application!');
     }
 
