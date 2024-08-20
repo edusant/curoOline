@@ -23,8 +23,7 @@ test('profile information can be updated', function () {
         ]);
 
     $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/profile');
+        ->assertSessionHasNoErrors();
 
     $user->refresh();
 

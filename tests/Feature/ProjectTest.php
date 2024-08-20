@@ -116,10 +116,9 @@ it('atualiza um projeto existente user não autorizado via resquest', function (
 
 it('delete projeto', function () {
 
-    $user = User::factory()->create();
 
     $response = $this
-        ->actingAs($user)
+        ->actingAs($this->user)
         ->delete('/project/delete', [
             'project_id' => $this->project->id,
         ]);
