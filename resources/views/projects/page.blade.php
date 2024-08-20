@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Projeto: {{ $projeto->titulo }}
+            descrição: {{ $projeto->titulo }}
         </h2>
+        <p class="font-semibold"> Projeto: {{ $projeto->descricao }}</p>
     </x-slot>
 
     <div class="py-12">
