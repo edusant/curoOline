@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         # e assim continuar aproveitando os gates "can" do blade laravel
 
         Gate::define('update-project', function (User $user, $projectId) {
-            return (new ProjectRepository)->get($projectId)->user_id === $user->id
+            return (int)(new ProjectRepository)->get($projectId)->user_id === (int)$user->id
                         ? Response::allow()
                         : Response::deny('');
         });
@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('update-task', function (User $user, $taskId) {
-            return (new TaskRepository)->get($taskId)->project->user_id === $user->id
+            return (int)(new TaskRepository)->get($taskId)->project->user_id === (int)$user->id
                         ? Response::allow()
                         : Response::deny('');
         });
