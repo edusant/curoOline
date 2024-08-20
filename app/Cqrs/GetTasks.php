@@ -26,3 +26,4 @@ class GetTasks
         return $querie->paginate(10);
     }
 }
+

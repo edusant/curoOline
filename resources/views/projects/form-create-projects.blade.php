@@ -1,10 +1,4 @@
 <section class="space-y-6">
-    <header>
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Todos os seus projetos estão aqui.') }}
-        </p>
-    </header>
-
     <x-primary-button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'create-project')"
@@ -18,8 +12,6 @@
             <h2 class="text-lg font-medium text-gray-900">
                 {{ __('Criando novo projeto') }}
             </h2>
-
-
 
             <div class="mt-6">
                 <x-input-label for="password" value="{{ __('Titulo') }}" class="sr-only" />

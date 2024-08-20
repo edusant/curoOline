@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cqrs\AdicionaUsuarioEmProjeto;
 use App\Cqrs\GetIdUserPorEmail;
 use App\Cqrs\GetTasks;
+use App\Cqrs\GetTasksExportesExcel;
 use App\Cqrs\GetUsuariosProjetos;
 use App\Models\ProjectUser;
 use App\Repository\ProjectRepository;
@@ -65,6 +66,12 @@ class ProjectsController extends Controller
 
     public function list(Request $request)
     {
+        if ($request->has('baixar_excel'))
+        {
+            (new GetTasksExportesExcel)->get($request->project_id, de: $request->de, ate: $request->ate,
+            status: $request->status);
+        }
+
         return view('projects.page', [
             'projeto' => (new ProjectRepository)->get($request->project_id),
             'tasks' => (new GetTasks)->get($request->project_id, de: $request->de, ate: $request->ate,
